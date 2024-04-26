@@ -107,7 +107,7 @@ resource "aws_network_interface" "web-server-nic" {
 
 #8.assign an elastic IP to the network interface created in step 7
 resource "aws_eip" "one" {
-    domain                    = "vpc"
+    vpc                       = true
     network_interface         = aws_network_interface.web-server-nic.id
     associate_with_private_ip = "10.0.1.50"
     depends_on = [aws_internet_gateway.gw]
