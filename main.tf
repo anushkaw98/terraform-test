@@ -3,8 +3,6 @@ provider "aws" {
   access_key = "Access_key_ID"
   secret_key = "Secret_access_key"
   
- 
-}
 
 # 1.create vpc
 resource "aws_vpc" "prod-vpc" {
@@ -37,6 +35,9 @@ resource "aws_route_table" "prod-route-table" {
   }
 }
 
+#variable "set_subnet" {
+#  description = "cidr block for the subnription"
+#}
 
 # 4.create subnet 
 
@@ -101,7 +102,7 @@ resource "aws_network_interface" "web-server-nic" {
 }
 
 #8.assign an elastic IP to the network interface created in step 7
-resource "aws_eip" "two" {
+resource "aws_eip" "one" {
     domain                    = "vpc"
     network_interface         = aws_network_interface.web-server-nic.id
     associate_with_private_ip = "10.0.1.50"
